@@ -2,6 +2,13 @@ class User
     def initialize(username, password)
         @username = username
         @password = password
+
+    end
+end
+
+class Public_User < User
+    def initialize(username, password)
+        super(username, password)
         @books = {
             on_loan:0,
             on_hold: 0,
@@ -10,10 +17,16 @@ class User
     end
 end
 
+class Administrator < User
+end
+
+
+
 list_of_users = [
-    User.new("Larry", "I-love-steaks"),
-    User.new("Paul", "fiddlesticks"),
-    User.new("John", "password"),
+    Public_User.new("Larry", "I-love-steaks"),
+    Public_User.new("Paul", "fiddlesticks"),
+    Public_User.new("John", "password"),
+    Administrator.new("Mrs Leder", "I-am-the-library")
 ]
 
 # loop do
@@ -22,5 +35,3 @@ list_of_users = [
 #     puts "Enter your password"
 #     password = gets.chomp
 # end
-
-p list_of_users[0].class
